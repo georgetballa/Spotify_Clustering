@@ -1,7 +1,7 @@
 # Spotify_Clustering
 Use Clustering on Playlists based on Track Analysis Data
 
-### Formal Presentation Located in presentation/presentation.pdf
+### Formal Presentation Located in [Here](../presentation.pdf)
 
 
 
