@@ -1,7 +1,13 @@
 # Spotify_Clustering
 Use Clustering on Playlists based on Track Analysis Data
 
-### Formal Presentation Located in [Here](https://github.com/georgetballa/Spotify_Clustering/blob/main/presentation.pdf)
+Selected best clustering model to describe 70,000 playlists with 30 clusters resulting in sensible clusters.
+
+Cluster centers were used to identify nearest neighbors for each cluster. Analysis of these clusters shows that the clustering is working.
+
+K-nearest neighbors was used to recommend similar playlists, artists, and songs
+
+### Formal Presentation: [Here](https://github.com/georgetballa/Spotify_Clustering/blob/main/presentation.pdf)
 
 
 
