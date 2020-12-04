@@ -312,3 +312,46 @@ def new_playlist(uri, playlist_analysis, playlist_master):
         neighbors = neighbors.append(playlist_master[playlist_master['playlist_name']==playlist_analysis.iloc[i].name])
         
     return neighbors
+
+def cat_dict(centers):
+    '''Generate dictionary of categories determined by KNN
+    Make sure to use full set of features not just PCA or Scaler Error will occur
+    
+    centers: cluster centers from clustering model
+    
+    '''
+    d = {}
+    for i in range(len((centers))):
+        center = scaler.transform(np.array(centers[i]).reshape(1,-1))
+        indices = knn.kneighbors(center, 5, return_distance=False)
+        neighbors = pd.DataFrame()
+        for j in indices[0]:
+            neighbors = neighbors.append(playlist_master[playlist_master['playlist_name']==playlist_analysis.iloc[j].name])
+
+        d[i] = neighbors
+    return d
+
+def see_category_artists(d, cat_num):
+    ''' View most common artists in category
+    
+    d: dictionary of cluster dataframes with category is key
+    cat_num: Category number
+    
+    '''
+    
+    for i in d[cat_num].groupby('artist_name').count().sort_values(by='playlist_name', ascending=False).index[:50]:
+        print(i)
+
+def see_category(cat_num):
+    '''view category DataFrame'''
+    return d[cat_num][['playlist_name','artist_name','track_name', 'album_name']].head(500)
+
+def run_gaussian_mixing(arr):
+    gm = GaussianMixture(n_components=30, n_init=15, max_iter=300)
+    %time y = gm.fit_predict(arr)
+    err = gm.aic(arr)
+    return y,err
+
+def rim_knn(arr):
+    knn = NearestNeighbors(n_neighbors=5, algorithm = 'auto')
+    knn.fit(arr)
