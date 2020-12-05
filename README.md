@@ -1,4 +1,4 @@
-# Spotify_Clustering
+# Spotify Playlist Clustering and Recommendation
 Use Clustering on Playlists based on Track Analysis Data
 
 Selected best clustering model to describe 70,000 playlists with 30 clusters r
