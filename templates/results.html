@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+  h1 {
+  color: yellow;
+  text-align: center;
+  }
+  p {
+  color:white; 
+  height:80;
+  text-align: center;
+  }
+  </style>
+
+<h1>
+  {% for i in prediction %}
+              
+              {{ i|safe }}
+  {% endfor %}
+</h2>
+
+
+
+ 
+  
+
+
+<form action="{{url_for('results')}}">
+  <input type="submit" value="Predict again" />
+  </form>
+{% endblock content %}

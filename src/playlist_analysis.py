@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import os.path
 from os import path
 import matplotlib.pyplot as plt
-%matplotlib inline
+
 import json
 
 import itertools
@@ -237,7 +237,7 @@ def mixture_testing(df_scaled_pca, mink, maxk):
 
     for k in range(mink,maxk):
         model = GaussianMixture(n_components=k, n_init=15, max_iter=300)
-        %time y = model.fit_predict(x)
+        y = model.fit_predict(x)
     #     ax.axis('off')
     #     ax.scatter(x[:,0], x[:,1], c=y, linewidths=0, s=10)
     #     ax.set_ylim(ymin=-9, ymax=8)
@@ -258,7 +258,7 @@ def mixture_testing(df_scaled_pca, mink, maxk):
     plt.savefig(f'./img/gm_{mink}-{maxk}clusters_full.png', dpi=200)
     return aic, converged
 
-def new_playlist(uri, playlist_analysis, playlist_master):
+def new_playlist(uri, playlist_analysis, playlist_master, knn, scaler):
     '''Evaluate new playlist and return nearest neighbors'''
     pl = spotify.playlist_items(uri, fields=None, market=None)
     plt = pd.DataFrame(pl['items'])
@@ -311,7 +311,7 @@ def new_playlist(uri, playlist_analysis, playlist_master):
     for i in indices[0]:
         neighbors = neighbors.append(playlist_master[playlist_master['playlist_name']==playlist_analysis.iloc[i].name])
         
-    return neighbors
+    return neighbors[['artist_name','track_name']]
 
 def cat_dict(centers):
     '''Generate dictionary of categories determined by KNN
@@ -348,10 +348,10 @@ def see_category(cat_num):
 
 def run_gaussian_mixing(arr):
     gm = GaussianMixture(n_components=30, n_init=15, max_iter=300)
-    %time y = gm.fit_predict(arr)
+    y = gm.fit_predict(arr)
     err = gm.aic(arr)
     return y,err
 
-def rim_knn(arr):
+def run_knn(arr):
     knn = NearestNeighbors(n_neighbors=5, algorithm = 'auto')
     knn.fit(arr)

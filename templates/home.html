@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<html>
+  <style>
+  .important-paragraph{
+    color:red
+  }
+  </style>
+  <h1 class='important-paragraph'>Spotify Playlist Analyzer!</h1>
+  <p>
+    Copy and paste a Spotify URL below to get artist recommendations
+  </p>
+ 
+  <form action='/results' method = 'post'>
+
+    <style>
+      .important-paragraph{
+        color:aquamarine
+      }
+      </style>
+  
+    <p class = 'important-paragraph form-inputs'>
+      <label for='pl'>Copy/Paste a Spotify Playlist URL: </label>
+      <input type='text' name = 'url' id='pl'/>
+    </p>
+  
+
+  
+    <p> <input type='submit' value='Submit'/></p>
+  </form>
+</html>
+{% endblock content %}
