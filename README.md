@@ -1,13 +1,13 @@
-# Spotify_Clustering
+# Spotify Playlist Clustering and Recommendation
 Use Clustering on Playlists based on Track Analysis Data
 
-Selected best clustering model to describe 70,000 playlists with 30 clusters r
+Selected best clustering model to describe 70,000 playlists.
 
-Cluster number determined by AIC scoring
+Cluster number determined by AIC scoring.
 
-Cluster centers were used to identify nearest neighbors for each cluster. Analysis of these clusters shows that the clustering is working well and grouping similar playlists
+Cluster centers were used to identify nearest neighbors for each cluster center. Analysis of these clusters shows that the clustering is working well and grouping similar playlists.
 
-K-nearest neighbors was used to recommend similar playlists, artists, and songs
+K-nearest neighbors used to recommend similar playlists, artists, and songs
 
 ## Formal Presentation: [Here](https://github.com/georgetballa/Spotify_Clustering/blob/main/presentation.pdf)
 
